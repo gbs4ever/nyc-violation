@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+   resources :sessions , only: [:create,:show]
+   get '/profile', to: 'sessions#getuser'
   resources :users
     resources :plates , only: [:index,:show]
      resources :violation , only: [:index,:show]
