@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     render json: current_user
     else 
       render json:{
-        error: "You are not logged in"
+        error: "You are not logged in, please login in"
       }
       
     end
