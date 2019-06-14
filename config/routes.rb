@@ -2,6 +2,7 @@ Rails.application.routes.draw do
    resources :sessions , only: [:create,:show]
    get '/profile', to: 'sessions#getuser'
    delete '/logout', to: 'sessions#destroy'
+   post '/violations', to: 'violations#search'
   resources :users , only: [:create,:show]
     resources :plates , only: [:index,:show]
      resources :violation , only: [:index,:show]
