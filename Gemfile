@@ -18,6 +18,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry'
 gem 'pry-rails'
 gem 'fast_jsonapi'
+gem 'faraday', '~> 0.9.2'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
