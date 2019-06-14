@@ -18,11 +18,18 @@ class UsersController < ApplicationController
   def create
     
     @user = User.new(user_params)
-  binding.pry
+
     if @user.save
-      render json: @user ##, status: :created, location: @user
+       session[:user_id] = @user.id
+      render json:  @user
     else
-      render json: @user.errors, status: "please enter a valid email"
+     # render json:@user.errors.messages
+   
+     render json:{
+        error: "please enter a valid email and password "
+      }
+
+
     end
   end
 
