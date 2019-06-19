@@ -26,7 +26,7 @@ class UsersController < ApplicationController
      # render json:@user.errors.messages
    
      render json:{
-        error: "please enter a valid email and password "
+        error: "Please enter a valid email and password!"
       }
 
 

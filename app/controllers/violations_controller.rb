@@ -1,5 +1,5 @@
 class ViolationsController < ApplicationController
- 
+ before_action :confirm_logged_in?
  ##1 will return array of 3 json objects- done
  ## 2 we want to send that data to redux 
  ## 3 save params to plate model  - saves
@@ -7,14 +7,19 @@ class ViolationsController < ApplicationController
 ##  
 
 def search
+
 state=params[:violation][:state].upcase
     @resp = Faraday.get('https://data.cityofnewyork.us/resource/uvbq-3m68.json') do |req|
   req.params['plate'] = params[:violation][:number]
   req.params['state'] = state
-  req.params['$limit'] = 10 
+  req.params['$limit'] = 15 
     end
-  
+   user = current_user
+   user.plates.build(number: params[:violation][:number], state: state)
+     user.save
+
   if @resp.success?
+    
     body = JSON.parse(@resp.body)
     if body.empty?
       
@@ -24,8 +29,8 @@ state=params[:violation][:state].upcase
  
       ##need to break 
     else
-      user= current_user.plates.build(number: params[:violation][:number], state: params[:violation][:state])
-      current_user.save
+     
+     
       render json: body
     end
   else
@@ -33,11 +38,57 @@ state=params[:violation][:state].upcase
         error: "Api failed "
       }
   end
- 
+ def buildings
+  @resp = Faraday.get(' https://data.cityofnewyork.us/resource/dvnq-fhaa.json?') do |req|
+
+  req.params['house_number'] = params[:violation][:number]
+  req.params['street'] = state
+  req.params['$limit'] = 20
+    end
+    if @resp.success?
+    body = JSON.parse(@resp.body)
+    if body.empty?  
+       render json:{
+        notice: "Yay No Violations"
+      } and return
+    else
+      render json: body
+    end
+    else
+    render json:{
+        error: "Api failed "
+      }
+    end
+binding.pry
+end 
 
 end
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+private
+def confirm_logged_in?
+
+if  !current_user
+render json:{
+        error: "Please login in to search"
+      }
+end  
+
+end
 
 
 

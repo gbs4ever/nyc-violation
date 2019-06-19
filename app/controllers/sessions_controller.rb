@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       render json: @user
     else 
       render json:{
-        error: "INVALID CREDEN"
+        error: "Your Username and Password do not match"
       }
     
     end
