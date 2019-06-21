@@ -36,12 +36,15 @@ class ViolationsController < ApplicationController
 end
   def buildings
   street=params[:violation][:street].upcase
+  house_number= params[:violation][:houseNumber] 
     @resp = Faraday.get('https://data.cityofnewyork.us/resource/dvnq-fhaa.json?') do |req|
-      req.params['house_number']  = params[:violation][:houseNumber]
+      req.params['house_number']  = house_number
       req.params['street'] = street
       req.params['$limit'] = 20
     end
-      
+      user = current_user
+  # user.address.build(house_number: house_number,street: street)
+  # user.save
       if @resp.success?
         body = JSON.parse(@resp.body)
           if body.empty?  
