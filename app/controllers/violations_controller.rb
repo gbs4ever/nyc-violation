@@ -43,8 +43,8 @@ end
       req.params['$limit'] = 20
     end
       user = current_user
-  # user.address.build(house_number: house_number,street: street)
-  # user.save
+      user.addresses.build(house_number: house_number,street: street)
+      user.save
       if @resp.success?
         body = JSON.parse(@resp.body)
           if body.empty?  
