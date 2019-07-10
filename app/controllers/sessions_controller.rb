@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+  def welcome
+    render json: {
+      welcome: "your API has loaded"
+    }
+  end
     def create
       @user = User.find_by(email: params[:session][:email])
     if@user && @user.authenticate(params[:session][:password])

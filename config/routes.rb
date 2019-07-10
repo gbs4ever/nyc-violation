@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+   root   to: 'sessions#welcome' 
    resources :sessions , only: [:create,:show]
     get '/profile', to: 'sessions#getuser'
     post'/buildings', to: 'violations#buildings'
