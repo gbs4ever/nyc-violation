@@ -1,17 +1,17 @@
 class ViolationsController < ApplicationController
- before_action :confirm_logged_in?
+#  before_action :confirm_logged_in?
 
   def search
-
+binding.pry
   state=params[:violation][:state].upcase
-  @resp = Faraday.get('https://data.cityofnewyork.us/resource/uvbq-3m68.json') do |req|
+  @resp = Faraday.get('https://data.cityofnewyork.us/resource/nc67-uf89.json') do |req|
     req.params['plate'] = params[:violation][:number]
     req.params['state'] = state
     req.params['$limit'] = 15 
   end
-   user = current_user
-   user.plates.build(number: params[:violation][:number], state: state)
-     user.save
+   #user = current_user
+  current_user.plates.build(number: params[:violation][:number], state: state)
+  current_user.save
 
   if @resp.success?
     
