@@ -2,7 +2,6 @@ class ViolationsController < ApplicationController
 #  before_action :confirm_logged_in?
 
   def search
-binding.pry
   state=params[:violation][:state].upcase
   plateNum =params[:violation][:number].upcase
   @resp = Faraday.get('https://data.cityofnewyork.us/resource/nc67-uf89.json') do |req|

@@ -9,4 +9,9 @@ admin =User.create(email: "admin@admin.com", password: "password")
 user = User.create(email: "user@user.com", password: "password")
 
 
-admin.plates.create(number:"h123ser" ,state:"ny")
+admin.plates.create(number:"H123ser" ,state:"ny")
+admin.plates.create(number:"H321FR" ,state:"ny")
+admin.plates.create(number:"H156ser" ,state:"ny")
+admin.plates.create(number:"39386ML" ,state:"ny")
+
+admin.save

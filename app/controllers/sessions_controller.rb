@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     }
   end
     def create
+  
       @user = User.find_by(email: params[:session][:email])
     if@user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
@@ -17,7 +18,7 @@ class SessionsController < ApplicationController
     end
   end
   def getuser
- # binding.pry
+
     if  logged_in?
     render json: current_user
     else 
@@ -28,7 +29,6 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-    
       session.destroy
       render json:{ notice: "You are logged out"}
     end
