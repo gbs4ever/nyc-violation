@@ -4,8 +4,9 @@ class ViolationsController < ApplicationController
   def search
 binding.pry
   state=params[:violation][:state].upcase
+  plateNum =params[:violation][:number].upcase
   @resp = Faraday.get('https://data.cityofnewyork.us/resource/nc67-uf89.json') do |req|
-    req.params['plate'] = params[:violation][:number]
+    req.params['plate'] = plateNum
     req.params['state'] = state
     req.params['$limit'] = 15 
   end
