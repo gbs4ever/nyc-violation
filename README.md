@@ -1,7 +1,6 @@
 # README
 
-
-
+not working as google chrome switched the way the handle cookies will be updated soon 
 
 ## Back-end-Api
 Ruby 2.6.1
