@@ -1,0 +1,6 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+    SuggestExtensions: false
+    Style/EndlessMethod: # (new in 1.8)
+    Enabled: true  
