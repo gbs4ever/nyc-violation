@@ -9,7 +9,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 admin = User.create(email: 'admin@admin.com', password: 'password')
 user = User.create(email: 'user@user.com', password: 'password')
-
+user.plates.create(number: 'Hjy123', state: 'ny')
 admin.plates.create(number: 'H123ser', state: 'ny')
 admin.plates.create(number: 'H321FR', state: 'ny')
 admin.plates.create(number: 'H156ser', state: 'ny')

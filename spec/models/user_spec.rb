@@ -12,7 +12,6 @@ RSpec.describe User, type: :model do
     it 'hashes a password' do
       user = User.create(email: @email, password: @password)
       user.save
-
       expect(user.password_digest).not_to eq(user.password)
     end
   end
@@ -26,7 +25,6 @@ RSpec.describe User, type: :model do
       expect(no_password.errors.full_messages).to include(
         "Password can't be blank"
       )
-
       expect(no_email).not_to be_valid
       expect(no_email.errors.full_messages).to include("Email can't be blank")
     end
@@ -34,7 +32,6 @@ RSpec.describe User, type: :model do
     it 'requires that the username be unique' do
       User.create(email: @email, password: @password)
       duplicate_user = User.create(email: @email, password: @password)
-
       expect(duplicate_user).not_to be_valid
       expect(duplicate_user.errors.full_messages).to include('Email has already been taken')
     end

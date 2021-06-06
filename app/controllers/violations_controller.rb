@@ -5,18 +5,15 @@ class ViolationsController < ApplicationController
 
   def search
     state = params[:violation][:state].upcase
-    plateNum = params[:violation][:number].upcase
+    plate_num = params[:violation][:number].upcase
     @resp = Faraday.get('https://data.cityofnewyork.us/resource/nc67-uf89.json') do |req|
-      req.params['plate'] = plateNum
+      req.params['plate'] = plate_num
       req.params['state'] = state
       req.params['$limit'] = 15
     end
-    # user = current_user
     current_user.plates.build(number: params[:violation][:number], state: state)
     current_user.save
-
     if @resp.success?
-
       body = JSON.parse(@resp.body)
       if body.empty?
         render json: {
@@ -25,7 +22,6 @@ class ViolationsController < ApplicationController
       end
 
       render json: body
-
     else
       render json: {
         error: 'Api failed '
