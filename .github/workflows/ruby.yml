@@ -14,59 +14,9 @@ on:
     branches: [ master ]
 
 jobs:
-  tests:
-    name: Tests
-    runs-on: ubuntu-latest
-    
-    services:
-     postgres:
-        image: postgres:12
-        ports: ["5432:5432"]
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5        
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Ruby and install gems
-        uses: ruby/setup-ruby@v1
-        
-      # - name: Install PostgreSQL
-      #   run: |
-      #    sudo apt-get -yqq install libpq-dev postgresql
-      #    sudo service postgresql start
-      - name: Run bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-      
-
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-#           SPA_ORIGIN: https://premiumsupplieslimited.com
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        run: rails db:setup
-
-      - name: Run tests
-        run: rspec
-        env:
-          RAILS_ENV: test
-          SPA_ORIGIN: https://premiumsupplieslimited.com
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-        
+ 
   build:
-    needs: tests
+ 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
