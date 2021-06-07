@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Plate, type: :model do
   before :each do
-    @user = User.create(email: "simcha@test.com", password: "railsisthebest")
+    @user = User.create(email: 'simcha@test.com', password: 'railsisthebest')
     @state = 'ny'
     @plate = 'hrferd13'
   end
- describe 'validations' do
-it 'requires a plate to belong to a user ' do
- no_user = Plate.create(state: @state, number: @plate)
-         expect(no_user).not_to be_valid
+  describe 'validations' do
+    it 'requires a plate to belong to a user ' do
+      no_user = Plate.create(state: @state, number: @plate)
+      expect(no_user).not_to be_valid
       expect(no_user.errors.full_messages).to include(
-        "User must exist"
+        'User must exist'
       )
-    end    
+    end
     it 'requires a plate and a state upon creation' do
       no_plate =  @user.plates.create(state: @state)
       no_state =  @user.plates.create(number: @plate)
