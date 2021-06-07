@@ -14,9 +14,9 @@ class SessionsController < ApplicationController
       render json: @user
     else
       render json: {
-       
+
         error: 'Your Username and Password do not match'
-      },status: 401
+      }, status: 401
 
     end
   end

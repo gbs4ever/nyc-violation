@@ -10,13 +10,12 @@ RSpec.describe 'Sessions', type: :request do
   describe 'POST /sessions' do
     describe 'on success' do
       before(:each) do
-    
         password = 'testtest'
         email = 'test@email.com'
         @user = User.create(email: email, password: password)
 
         params = {
-         email: email,
+          email: email,
           password: password
         }
         post '/sessions',
@@ -27,11 +26,10 @@ RSpec.describe 'Sessions', type: :request do
 
       it "returns the user's data " do
         body = JSON.parse(@response.body)
-
         expect(@response.status).to eq(200)
-        expect(body["email"]).to include @user.email
-        expect(body).to include "plates"
-        expect(body).to include "addresses"
+        expect(body['email']).to include @user.email
+        expect(body).to include 'plates'
+        expect(body).to include 'addresses'
         expect(body).not_to be_empty
       end
     end
@@ -46,10 +44,8 @@ RSpec.describe 'Sessions', type: :request do
              params: params.to_json,
              headers: { 'Content-Type': 'application/json' }
         body = JSON.parse(response.body)
-
         expect(@response.status).to eq(401)
         expect(body['error']).to include 'Your Username and Password do not match'
-        
       end
     end
   end
