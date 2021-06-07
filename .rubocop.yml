@@ -4,3 +4,4 @@ AllCops:
     SuggestExtensions: false
     Style/EndlessMethod: # (new in 1.8)
     Enabled: true  
+    NewCops: enable
