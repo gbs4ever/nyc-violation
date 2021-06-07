@@ -13,10 +13,10 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       render json: @user
     else
-
       render json: {
+       
         error: 'Your Username and Password do not match'
-      }
+      },status: 401
 
     end
   end
