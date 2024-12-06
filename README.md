@@ -1,12 +1,14 @@
 # README
 
+This is an old school project I am slowly updating , refactoring and updating to be a more modern API 
+
 
 
 ## Back-end-Api
-Ruby 2.6.1
-Rails 6.1.3.2
+Ruby 3.2.0
+Rails  7.0.8.6
 ## CI/CD
-This repo is live and all pull requests and push to master are build on heroku 
+This repo is live and all pull requests and push to master are build on heroku   WIP
 ## System dependencies
 All the dependencies are listed in the gem file.
 
