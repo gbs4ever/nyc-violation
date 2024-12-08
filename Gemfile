@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails', require: false
+  gem "annotaterb"
 end
 
 group :development do
