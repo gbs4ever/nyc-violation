@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.3.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.1.5"
+gem 'rails', '~> 7.1.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -20,8 +20,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry'
 gem 'pry-rails'
 
-gem 'faraday'
 gem 'active_model_serializers'
+gem 'faraday'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -33,15 +33,15 @@ gem 'active_model_serializers'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
 gem 'dotenv'
+gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'annotaterb'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails', require: false
-  gem "annotaterb"
 end
 
 group :development do
@@ -52,4 +52,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

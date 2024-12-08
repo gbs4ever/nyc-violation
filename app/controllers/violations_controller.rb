@@ -46,9 +46,10 @@ class ViolationsController < ApplicationController
         render json: {
           notice: 'No results please try searching again'
         } and return
-      else
-        render json: body
       end
+
+      render json: body
+
     else
       render json: {
         error: 'Api failed '
@@ -59,14 +60,14 @@ class ViolationsController < ApplicationController
   private
 
   def confirm_logged_in?
-    unless current_user
-      render json: {
-        error: 'Please login in to search'
-      }
-    end
+    return false if current_user
+
+    render json: {
+      error: 'Please login in to search'
+    }
   end
 
-  # Only allow a trusted parameter "white list" through, if saving to database
+  # Only allow a trusted parameter allowlist through, if saving to database
   #  def violation_params
   #    params.require(:violation).permit(:number, :state)
   #  end

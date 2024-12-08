@@ -43,7 +43,7 @@ RSpec.describe 'Sessions', type: :request do
         post '/sessions',
              params: params.to_json,
              headers: { 'Content-Type': 'application/json' }
-        body = JSON.parse(response.body)
+        body = response.parsed_body
         expect(@response.status).to eq(401)
         expect(body['error']).to include 'Your Username and Password do not match'
       end

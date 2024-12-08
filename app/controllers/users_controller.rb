@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
 
   # GET /users
   def index
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
+  # Only allow a trusted parameter allowlist through.
   def user_params
     params.require(:user).permit(:email, :password)
   end

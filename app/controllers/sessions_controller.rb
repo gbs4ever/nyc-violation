@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       render json: {
 
         error: 'Your Username and Password do not match'
-      }, status: 401
+      }, status: :unauthorized
 
     end
   end
